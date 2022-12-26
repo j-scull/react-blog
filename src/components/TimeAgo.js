@@ -5,7 +5,7 @@ const secondsTable = [
     ['month', 60 * 60 * 24 * 30],
     ['week', 60 * 60 * 24 * 7],
     ['day', 60 * 60 * 24],
-    ['hour', 60 * 60]
+    ['hour', 60 * 60],
     ['minute', 60],
 ];
 const rtf = new Intl.RelativeTimeFormat(undefined, {numeric: 'auto'});
@@ -21,7 +21,7 @@ function getTimeAgo(date) {
             bestInterval = unitSeconds / 2;
             break;
         }
-    }
+    };
     if (!bestUnit) {
         bestUnit = 'second';
         bestTime = parseInt(seconds / 10) * 10;

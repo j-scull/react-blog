@@ -5,21 +5,34 @@ import Post from './Post';
 
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 
-export default function Posts() {
+export default function Posts({ content }) {
 
     const [posts, setPosts] = useState();
     const api = useApi();
 
+    let url;
+    switch (content) {
+      case 'feed':
+      case undefined:
+        url = '/feed';
+        break;
+      case 'explore':
+        url = '/posts';
+        break;
+      default:
+        url = `/users/${content}/posts`;
+    }
+
     useEffect(() => {
       (async () => {
-        const response = await api.get('/feed');
+        const response = await api.get(url);
         if (response.ok) {
           setPosts(response.body.data);
         } else {
           setPosts(null);
         }
       })();
-    }, [api]);
+    }, [api, url]);
 
     return (
         <>

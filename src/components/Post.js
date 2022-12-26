@@ -7,7 +7,7 @@ export default function Post({ post }) {
     return (
         <Stack direction="horizontal" gap={3} className="Post">
             <Image src={post.author.avatar_url + '&s=48'}
-                    alt={post.author.username} roundCirce />
+                    alt={post.author.username} roundedCircle />
             <div>
                 <p>
                     <Link to={'/user/' + post.author.username}>
