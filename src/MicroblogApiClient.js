@@ -4,7 +4,7 @@ const BASE_API_URL = process.env.REACT_APP_BASE_API_URL;
 export default class MicroblogApiClient {
     
     constructor() {
-        this.base_url = BASE_API_URL;
+        this.base_url = BASE_API_URL + '/api';
     }
 
     async request(options) {
@@ -16,12 +16,12 @@ export default class MicroblogApiClient {
         let response;
         try { 
             response = await fetch(this.base_url + options.url + query, {
-                method = options.method,
+                method: options.method,
                 headers: {
-                    'Content-Type: application/json',
+                    'Content-Type': 'application/json',
                     ...options.headers,
                 },
-                body: options.body ? JSON.stringify(options.body) : null;
+                body: options.body ? JSON.stringify(options.body) : null,
             });
         }
         catch (error) {
@@ -35,7 +35,7 @@ export default class MicroblogApiClient {
                         description: error.toString(),
                     }; 
                 }
-            }
+            };
         }
 
         return { 
@@ -57,7 +57,7 @@ export default class MicroblogApiClient {
         return this.request({method: 'PUT', url, body, ...options});
     }
 
-    async delete(url, query, options) {
+    async delete(url, options) {
         return this.request({method: 'DELETE', url, ...options});
     }
 
